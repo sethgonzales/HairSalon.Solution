@@ -3,72 +3,83 @@ using HairSalon.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HairSalon.Controllers
 {
-  public class StylistsController : Controller
+  public class ItemsController : Controller
   {
     private readonly HairSalonContext _db;
-    public StylistsController(HairSalonContext db)
+
+    public ItemsController(HairSalonContext db)
     {
       _db = db;
     }
+
     public ActionResult Index()
     {
-      ViewBag.PageTitle = "Stylists";
-      List<Stylist> model = _db.Stylists.ToList();
+      ViewBag.PageTitle = "View All Items";
+      List<Item> model = _db.Items.Include(item => item.Category).ToList();
       return View(model);
     }
-    public ActionResult Create()
+
+    public ActionResult Create() 
     {
-      ViewBag.PageTitle = "Create Stylist";
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); 
       return View();
     }
+
     [HttpPost]
-    public ActionResult Create(Stylist stylist)
+    public ActionResult Create(Item item) 
     {
-      _db.Stylists.Add(stylist);
+      ViewBag.PageTitle = "Create New Items";
+      if (item.CategoryId == 0)
+      {
+        return RedirectToAction("Create");
+      }
+      _db.Items.Add(item);  
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      ViewBag.PageTitle = "Stylist Details";
-      Stylist thisStylist = _db.Stylists.Include(stylist => stylist.Clients).FirstOrDefault(stylist => stylist.StylistId == id);
-
-      return View(thisStylist);
+      ViewBag.PageTitle = "Item Details";
+      Item thisItem = _db.Items.Include(item => item.Category).FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
     }
-
-    public ActionResult Edit(int id)
+    public ActionResult Edit(int id) 
     {
-      ViewBag.PageTitle = "Edit Stylist";
-      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
-      return View(thisStylist);
+      ViewBag.PageTitle = "Edit Item Details";
+      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
     }
 
     [HttpPost]
-    public ActionResult Edit(Stylist stylist)
+    public ActionResult Edit(Item item) 
     {
-      _db.Stylists.Update(stylist);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      _db.Items.Update(item); 
+      _db.SaveChange
+      return RedirectToAction("Index"); 
     }
 
     public ActionResult Delete(int id)
     {
-      ViewBag.PageTitle = "Delete Stylist";
-      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
-      return View(thisStylist);
+      ViewBag.PageTitle = "Delete Items";
+      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
-      _db.Stylists.Remove(thisStylist);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id); 
+      _db.Items.Remove(thisItem); 
+      _db.SaveChanges(); 
+      return RedirectToAction("Index"); 
     }
   }
 }
+
+
+
