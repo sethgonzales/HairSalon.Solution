@@ -17,7 +17,7 @@ else
   @foreach (Client client in Model)
     {
       <li>
-        <h4>@Html.ActionLink($"{client.Description}", "Details", new { id = client.ClientId }) | <span class="light-text">@client.Stylist.Name</span></h4>
+        <h4>@Html.ActionLink($"{client.Name}", "Details", new { id = client.ClientId }) | <span class="light-text">@client.Stylist.Name</span></h4>
       </li>
     }
   </ul>

@@ -37,6 +37,13 @@ body h2 {
   height: 100px;
 }
 
+.description {
+  color: rgb(44, 43, 43);
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 150%; 
+}
+
 .light-text {
   color: rgb(44, 43, 43);
   font-style: italic;

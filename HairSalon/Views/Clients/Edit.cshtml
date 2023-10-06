@@ -6,15 +6,28 @@
 
 <h2>Edit</h2>
 
-<h4>Edit this client: @Html.DisplayFor(model => model.Description)</h4>
+<h4>Edit this client: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.ClientId)
-
+  @* @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
   @Html.LabelFor(model => model.Description)
   @Html.EditorFor(model => model.Description)
+  <input type="submit" value="Save" /> *@
 
-  <input type="submit" value="Save" />
+    <div class="form-block">
+      @Html.LabelFor(model => model.Name)
+      @Html.EditorFor(model => model.Name)
+    </div>
+    <div class="form-block">
+      @Html.LabelFor(model => model.Description)
+      @Html.TextAreaFor(model => model.Description, new { @class = "textbox" })
+    </div>
+    <div class="form-block">
+      <input type="submit" value="Save" />
+    </div>
+
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>

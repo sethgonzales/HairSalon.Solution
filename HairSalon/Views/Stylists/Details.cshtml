@@ -5,8 +5,8 @@
 @model HairSalon.Models.Stylist
 @using HairSalon.Models
 
-<h2>About @Html.DisplayFor(model => model.Name)</h2>
-<p><em>@Html.DisplayFor(model => model.Description)</em></p>
+<h2>About @Html.DisplayFor(model => model.Name): <span class="light-text">Stylist</span></h2>
+<p class="description">@Html.DisplayFor(model => model.Description)</p>
 @if (@Model.Clients.Count == 0)
 {
   <h3>This stylist does not have any clients yet.</h3>
@@ -14,14 +14,15 @@
 else
 {
   <h3>Clients:</h3>
-  <ul>
+  <ul class="lists">
   @foreach (Client client in Model.Clients)
     {
-      <li>@Html.ActionLink($"{client.Description}", "Details", "Clients", new { id = client.ClientId })</li>
+      <li><h4>@Html.ActionLink($"{client.Name}", "Details", "Clients", new { id = client.ClientId })</h4></li>
     }
   </ul>
 }
-
-<p>@Html.ActionLink("Edit Stylist", "Edit", new { id = Model.StylistId })</p>
-<p>@Html.ActionLink("Delete Stylist", "Delete", new { id = Model.StylistId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<div class="navlinks">
+  <p>@Html.ActionLink("Edit Stylist", "Edit", new { id = Model.StylistId })</p>
+  <p>@Html.ActionLink("Delete Stylist", "Delete", new { id = Model.StylistId })</p>
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

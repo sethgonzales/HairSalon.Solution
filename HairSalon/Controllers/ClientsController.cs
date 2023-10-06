@@ -50,7 +50,7 @@ namespace HairSalon.Controllers
     }
     public ActionResult Edit(int id) 
     {
-      ViewBag.PageTitle = "Edit Client Details";
+      ViewBag.PageTitle = "Edit Client";
       Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
