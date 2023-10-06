@@ -48,7 +48,8 @@ namespace HairSalon.Controllers
       Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
-    public ActionResult Edit(int id) 
+
+    public ActionResult Edit(int id)
     {
       ViewBag.PageTitle = "Edit Client";
       Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
@@ -56,11 +57,11 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Client client) 
+    public ActionResult Edit(Client client)
     {
-      _db.Clients.Update(client); 
+      _db.Clients.Update(client);
       _db.SaveChanges();
-      return RedirectToAction("Index"); 
+      return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)

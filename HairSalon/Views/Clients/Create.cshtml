@@ -15,7 +15,7 @@
   {
     <div class="form-block">
       @Html.LabelFor(model => model.Name)
-      @Html.TextBoxFor(model => model.Name)
+      @Html.TextBoxFor(model => model.Name, new { required = "required" })
     </div>
     <div class="form-block">
       @Html.LabelFor(model => model.Description)
@@ -26,7 +26,7 @@
       @Html.DropDownList("StylistId")
     </div>
     <div class="form-block">
-      <input type="submit" value="Add new client" />
+      <input type="submit" value="Add new client" required = "required"/>
     </div>
   }
 </div>

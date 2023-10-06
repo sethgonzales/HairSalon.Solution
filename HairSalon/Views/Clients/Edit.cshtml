@@ -6,20 +6,15 @@
 
 <h2>Edit</h2>
 
-<h4>Edit this client: @Html.DisplayFor(model => model.Name)</h4>
+<h4><span class=light-text>Edit this client: </span>@Html.DisplayFor(model => model.Name)</h4>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.ClientId)
-  @* @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name)
-  @Html.LabelFor(model => model.Description)
-  @Html.EditorFor(model => model.Description)
-  <input type="submit" value="Save" /> *@
-
+<div class="form">
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.ClientId)
     <div class="form-block">
       @Html.LabelFor(model => model.Name)
-      @Html.EditorFor(model => model.Name)
+      @Html.EditorFor(model => model.Name, new { required = "required" })
     </div>
     <div class="form-block">
       @Html.LabelFor(model => model.Description)
@@ -28,6 +23,9 @@
     <div class="form-block">
       <input type="submit" value="Save" />
     </div>
+  }
+</div>
 
-}
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<div class="navlinks-back">
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>
