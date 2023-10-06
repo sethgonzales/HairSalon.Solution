@@ -1,9 +1,91 @@
-div#footer {
-	position:fixed;
-	bottom:0px;
-	left:0px;
-	width:100%;
-	color:#CCC;
-	background:#333;
-	padding:8px;
+body {
+  background: white;
+}
+
+body h2{
+  border-bottom: 1px solid rgba(96, 89, 89, 0.739);
+  padding-bottom: 5px;
+}
+
+.container {
+  width: 50%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 0.75%;
+}
+
+.lists a {
+  color: rgb(65, 65, 65);
+}
+
+.form {
+  font-size: large;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.light-text {
+  color: grey;
+}
+
+.navlinks-home {
+  text-align: center;
+  font-size: 200%;
+  font-style: italic;
+}
+
+.navlinks-home a{
+  color: rgb(80, 5, 123);
+}
+
+.navlinks-home p {
+  float: left;
+  padding: 2%;
+  width: 50%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.navlinks {
+  text-align: center;
+  font-size: x-large;
+} 
+
+.navlinks a {
+  color: rgb(141, 141, 142);
+}
+
+.navlinks p {
+  float: left;
+  padding: 2%;
+  width: 33%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  color: rgb(80, 79, 79);
+  background: rgba(169, 232, 242, 0.76);
+  padding: 30px;
+  text-align: left;
+  font-style: italic;
+  box-sizing: border-box;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background: rgba(169, 232, 242, 0.76);
+  padding: 15px;
+  text-align: left;
+}
+
+#footer a {
+  color: rgb(80, 79, 79);
 }

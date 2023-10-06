@@ -10,7 +10,10 @@
 </head>
 
 <body>
-  @RenderBody()
+  @await Html.PartialAsync("Header")<br><br><br><br><br>
+  <div class="container">
+    @RenderBody()
+  </div>
   @await Html.PartialAsync("Footer")
 </body>
 
