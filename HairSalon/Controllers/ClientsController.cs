@@ -7,74 +7,74 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HairSalon.Controllers
 {
-  public class ItemsController : Controller
+  public class ClientsController : Controller
   {
     private readonly HairSalonContext _db;
 
-    public ItemsController(HairSalonContext db)
+    public ClientsController(HairSalonContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      ViewBag.PageTitle = "View All Items";
-      List<Item> model = _db.Items.Include(item => item.Category).ToList();
+      ViewBag.PageTitle = "View All Clients";
+      List<Client> model = _db.Clients.Include(client => client.Stylist).ToList();
       return View(model);
     }
 
     public ActionResult Create() 
     {
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); 
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name"); 
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Item item) 
+    public ActionResult Create(Client client) 
     {
-      ViewBag.PageTitle = "Create New Items";
-      if (item.CategoryId == 0)
+      ViewBag.PageTitle = "Create New Clients";
+      if (client.StylistId == 0)
       {
         return RedirectToAction("Create");
       }
-      _db.Items.Add(item);  
+      _db.Clients.Add(client);  
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      ViewBag.PageTitle = "Item Details";
-      Item thisItem = _db.Items.Include(item => item.Category).FirstOrDefault(item => item.ItemId == id);
-      return View(thisItem);
+      ViewBag.PageTitle = "Client Details";
+      Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
+      return View(thisClient);
     }
     public ActionResult Edit(int id) 
     {
-      ViewBag.PageTitle = "Edit Item Details";
-      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-      return View(thisItem);
+      ViewBag.PageTitle = "Edit Client Details";
+      Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      return View(thisClient);
     }
 
     [HttpPost]
-    public ActionResult Edit(Item item) 
+    public ActionResult Edit(Client client) 
     {
-      _db.Items.Update(item); 
-      _db.SaveChange
+      _db.Clients.Update(client); 
+      _db.SaveChanges();
       return RedirectToAction("Index"); 
     }
 
     public ActionResult Delete(int id)
     {
-      ViewBag.PageTitle = "Delete Items";
-      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-      return View(thisItem);
+      ViewBag.PageTitle = "Delete Clients";
+      Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      return View(thisClient);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id); 
-      _db.Items.Remove(thisItem); 
+      Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id); 
+      _db.Clients.Remove(thisClient); 
       _db.SaveChanges(); 
       return RedirectToAction("Index"); 
     }

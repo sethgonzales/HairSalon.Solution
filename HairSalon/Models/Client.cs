@@ -2,11 +2,9 @@ namespace HairSalon.Models
 {
   public class Client
   {
-    public int ClientId { get; set; }
+    public int ClientId { get; set; } 
     public string Description { get; set; }
-    public Sylist Sylist { get; set; }
-    public int SylistId { get; set; } 
-
-
+    public Stylist Stylist { get; set; } 
+    public int StylistId { get; set; } 
   }
 }
