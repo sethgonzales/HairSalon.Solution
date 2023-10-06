@@ -3,19 +3,34 @@
 }
 
 @model HairSalon.Models.Client
-<p><strong>NOTE:</strong> You need to have at least one stylist before you can add a client!</p>
-<p>Go to @Html.ActionLink("this page", "Create", "Stylists") to create a stylist.
+<div class="note">
+  <p><strong>NOTE:</strong> You need to have at least one stylist before you can add a client!</p>
+  <p>@Html.ActionLink("Create a stylist", "Create", "Stylists")</p>
+</div>
 
-<h4>Add a new client</h4>
+<h2>Add a new client</h2>
+
+<div class="form">
   @using (Html.BeginForm())
   {
-    @Html.LabelFor(model => model.Description)
-    @Html.TextBoxFor(model => model.Description)
-
-    @Html.LabelFor(model => model.Stylist)
-    @Html.DropDownList("StylistId")
-
-  <input type="submit" value="Add new client" />
+    <div class="form-block">
+      @Html.LabelFor(model => model.Name)
+      @Html.TextBoxFor(model => model.Name)
+    </div>
+    <div class="form-block">
+      @Html.LabelFor(model => model.Description)
+      @Html.TextAreaFor(model => model.Description, new { @class = "textbox" })
+    </div>
+    <div class="form-block">
+      @Html.LabelFor(model => model.Stylist)
+      @Html.DropDownList("StylistId")
+    </div>
+    <div class="form-block">
+      <input type="submit" value="Add new client" />
+    </div>
   }
+</div>
 
-<p>@Html.ActionLink("Show all clients", "Index")</p>
+<div class="navlinks-back">
+  <p>@Html.ActionLink("Back to Client List", "Index")</p>
+</div>
